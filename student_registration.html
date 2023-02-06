@@ -72,6 +72,7 @@
             border-radius: 50px; 
            overflow: hidden; 
         }
+        
         #upload{
             display: none;
         }
@@ -82,6 +83,10 @@
             background-size: cover;
             object-fit: cover;
         }
+
+    .display{
+        display:none;
+    }
         @media only screen and (max-width: 1200px) {
             .main-cont{
                 flex-direction: column;
@@ -107,7 +112,9 @@
               height: 70px;
               border-radius: 35px; 
             }
-           
+            .heading{
+              font-size: 10px;
+            }
           }
         @media only screen and (max-width: 600px) {
           .main-body{
@@ -129,9 +136,6 @@
             .profile label{
               font-size: 10px;
             }
-            .heading{
-              font-size: 20px;
-            }
         }
         @media only screen and (max-width: 300px){
           .main-cont{
@@ -140,6 +144,9 @@
             .heading
             {
               padding-left: 40px;
+            }
+            .text-end button{
+              font-size: 12px;
             }
         }
 
@@ -193,11 +200,11 @@
       <!-- Main Body -->
 
     <br><br><br><br>
-      <h1 class="heading" style="position: absolute;top: 10%;font-family: 'Montserrat', sans-serif;text-align: center;">
+      <div class="heading" style="position: absolute;top: 10%;font-size:220%;font-family: 'Montserrat', sans-serif;text-align: center;">
   
       STUDENT REGISTRATION
     
-      </h1><br><br><br>
+      </div><br><br><br>
       <div class="main-cont">
           <div class="main-body">
             <div class="main-body-cont">
@@ -237,17 +244,25 @@
           </div>
           <div class="main-body">
               <div class="main-body-cont">
-                <form action="./student_after_login_page.html"style="height:100%;display:flex;flex-direction: column;gap:5%;">
+                <form style="height:100%;display:flex;flex-direction: column;gap:5%;">
         
-                    <div class="profile" style="display: flex;font-size: 20px;width:100%;">
+                   <div class="profile" style="display: flex;font-size: 20px;width:100%;">
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                    
+                  
+                  <!-- </label>&emsp;&emsp; -->
+
+                  <div class="profile" style="display: flex;font-size: 20px;width:100%;">
                       
                     <input type="file"  id="upload" accept="image/png, image/jpg, image/jpeg">
-                    <label  style="cursor: pointer;border-radius: 10px;font-size:18px;" for="upload">
-                        <br><i id="profile_pic" class="fa-solid fa-user-shield fa-4x"></i>
-                        <div class="display" style="display:none;"></div>&emsp;
+                    <label style="cursor: pointer;border-radius: 10px;font-size:18px;" for="upload">
+                      <div  class="display"></div>&emsp;
+                      <i id="profile_pic" class="fa-solid fa-user-shield fa-4x"></i>
                     </label>&emsp;&emsp;
                     
                    </div>
+                  
+                 </div>
                     <div class="form-floating">
                       <input type="text" class="form-control" id="floatingInput" placeholder="Username">
                       <label  style="display:flex;align-items:center;gap:5%;" for="floatingInput"><i class="fa-solid fa-user"></i>Username</label>
@@ -290,17 +305,18 @@
       </div>
 
       <script>
-        const display = document.querySelector(".display");
+          const display = document.querySelector(".display");
+    const logo = document.querySelector("#profile_pic");
+
         const input = document.querySelector("#upload");
-        const label = document.querySelector("#profile_pic");
         let img = document.querySelector("img");
 
         input.addEventListener("change", () => {
           let reader = new FileReader();
           reader.readAsDataURL(input.files[0]);
           reader.addEventListener("load", () => {
-            display.style.display="block";
-            label.style.display="none";
+            display.style.display='block';
+            logo.style.display='none';
             display.innerHTML = `<img src=${reader.result} alt=''/>`;
           });
         });
